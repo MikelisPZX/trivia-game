@@ -19,7 +19,7 @@ class NumbersApiTriviaService implements TriviaServiceInterface
         $correctAnswer = (string) $number;
         
         // Replace the number with 'X', comment out to show the number
-      //  $fact = preg_replace("/\b{$number}\b/", 'X', $fact);
+        $fact = preg_replace("/\b{$number}\b/", 'X', $fact);
         
         // Generate wrong options
         $options = collect(range(max(1, $number - 10), $number + 10))
