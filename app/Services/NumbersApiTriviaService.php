@@ -18,14 +18,15 @@ class NumbersApiTriviaService implements TriviaServiceInterface
         $fact = $response->body();
         $correctAnswer = (string) $number;
         
-        // Replace the number with 'X', comment out to show the number
+        // Replace the number with 'X'
         $fact = preg_replace("/\b{$number}\b/", 'X', $fact);
         
-        // Generate wrong options
+        // Generate wrong options and convert to strings
         $options = collect(range(max(1, $number - 10), $number + 10))
             ->filter(fn($n) => $n != $number)
             ->shuffle()
             ->take(3)
+            ->map(fn($n) => (string) $n)
             ->push($correctAnswer)
             ->shuffle()
             ->values()
